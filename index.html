@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>for nidu ♡</title>
+
+<style>
+/* --- General Styles --- */
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background: #ffeef2;
+  overflow: hidden;
+  color: #ff4d6d;
+}
+
+/* --- Hearts animation --- */
+.heart {
+  position: absolute;
+  color: #ff4d6d;
+  font-size: 20px;
+  animation: float 8s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes float {
+  0% {transform: translateY(100vh) translateX(0) rotate(0deg);}
+  100% {transform: translateY(-10vh) translateX(50px) rotate(360deg);}
+}
+
+/* --- Front Page --- */
+#page1 {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffeef2, #ffd6e0);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+#page1 h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+#page1 p {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+/* I LOVE YOU background text */
+#page1::before {
+  content: "I LOVE YOU   I LOVE YOU   I LOVE YOU   I LOVE YOU   ";
+  position: absolute;
+  top: 0; left: 0;
+  font-size: 60px;
+  color: rgba(255,77,109,0.05);
+  white-space: nowrap;
+  animation: moveText 30s linear infinite;
+}
+
+@keyframes moveText {
+  0% {transform: translateX(0);}
+  100% {transform: translateX(-100%);}
+}
+
+/* Buttons */
+button {
+  margin: 10px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 12px;
+  background: #ff4d6d;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+/* Hidden */
+.hidden { display: none; }
+
+/* --- Note Page --- */
+#page2 {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffeef2, #ffc1d3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+}
+
+#note {
+  max-width: 700px;
+  font-size: 1.3em;
+  line-height: 1.8;
+  color: #ff1a55;
+  text-align: center;
+  white-space: pre-wrap;
+}
+
+/* Typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+</style>
+</head>
+
+<body>
+
+<!-- FRONT PAGE -->
+<div id="page1">
+  <h1>henno nidu ♡</h1>
+  <p>do you know I love you?</p>
+  <button onclick="yesClicked()">yes ♡</button>
+  <button onclick="noClicked()" id="noBtn">no</button>
+</div>
+
+<!-- NOTE PAGE -->
+<div id="page2" class="hidden">
+  <div id="note"></div>
+</div>
+
+<script>
+// --- No button fun ---
+function noClicked() {
+  const btn = document.getElementById("noBtn");
+  btn.style.position = "absolute";
+  btn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+  btn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+}
+
+// --- Yes button ---
+function yesClicked() {
+  document.getElementById("page1").classList.add("hidden");
+  document.getElementById("page2").classList.remove("hidden");
+  typeNote();
+}
+
+// --- Typing effect for note ---
+const message = `you are the most sweetest and the most gorgeous woman i’ve ever seen…
+the most beautiful, and the most important person in my life.
+
+i will always choose you.
+i will always love you, no matter the situation.
+
+i will love you the loudest, the softest, and unconditionally.
+
+i will be here no matter what…
+i will choose you even on the hardest days, especially on the hardest days.
+
+and i will continue to do so for the rest of my life…
+till my very last breath.
+
+i will be the proudest of you every single day.
+you are my pride.
+
+and in the most selfish way…
+i wish no one ever looks at you like i do.
+
+you are too well tangled in my soul.
+
+i love you ♡`;
+
+function typeNote() {
+  const note = document.getElementById("note");
+  let i = 0;
+  function typing() {
+    if (i < message.length) {
+      note.innerHTML += message.charAt(i) === "\n" ? "<br>" : message.charAt(i);
+      i++;
+      setTimeout(typing, 40); // speed of typing
+    }
+  }
+  typing();
+}
+
+// --- Hearts animation ---
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.innerHTML = '❤️';
+  heart.style.left = Math.random() * window.innerWidth + 'px';
+  heart.style.fontSize = (20 + Math.random()*30) + 'px';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 8000);
+}
+setInterval(createHeart, 300); // hearts every 0.3s
+</script>
+
+</body>
+</html>
